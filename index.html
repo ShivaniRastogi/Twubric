@@ -1,0 +1,100 @@
+
+<!doctype html>
+<html>
+   <head>
+      <!-- CSS only -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <!-- <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"> -->
+      <link rel="stylesheet" href="main.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+   </head>
+   
+   <body ng-app = "myapp">
+      <div ng-controller = "HelloController" class="container">
+            <h1>Twubric!</h1>
+            
+               <div class="row">
+                  <p>Sort By</p>
+                  <!-- <div class="col-sm-3" ng-click="sortby('total',sortOrder)">
+                     <button class="accordion-button" data-bs-toggle="false">Twubric Score {{sortOrder}}</button>
+                  </div>
+                  <div class="col-sm-3" ng-click="sortby('friends',sortOrder)">
+                     <button class="accordion-button">Friends {{sortOrder}}</button>
+                     
+                  </div>
+                  <div class="col-sm-3" ng-click="sortby('influence',sortOrder)">
+                     <button class="accordion-button">Influence {{sortOrder}}</button>
+                     
+                  </div>
+                  <div class="col-sm-3" ng-click="sortby('chirpiness',sortOrder)">
+                     <button class="accordion-button">Chirpiness {{sortOrder}}</button>
+                     
+                  </div> -->
+                  <div class = "col-sm-12" style="display: flex; flex-flow: row wrap; justify-content: space-between;">
+                     <div ng-repeat="col in sortarr" style="width: 24.5%;">
+                        <div ng-repeat="(key,val) in col">
+                           <div  ng-click="sortby(key,val)">
+                              <button class="accordion-button" > {{key}} {{val}}</button> 
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+
+               </div>
+            
+
+            <section>
+               <div class="row">
+                  <p>Joined Twitter between</p>
+                  <div class="col-sm-6">
+                     <label for="start date"> Start Date: </label>
+                     <input type="date" name="start date" id="" ng-model="start_date">
+                  </div>
+                  <div class="col-sm-6">
+                                    
+                     <label for="end date">End Date: </label>
+                     <input type="date" name="end date" id="" ng-model="end_date">
+                  </div>
+               </div>
+            </section>
+
+
+            <section>
+               <div style="display: flex; flex-flow: row wrap; justify-content: space-between;">
+                  <div style="width: 32%;" ng-repeat="user in users| dateRange : start_date : end_date | orderBy:sortCol">
+                     <table class="table table-bordered" >
+                        <thead>
+                        <tr>
+                           <th scope="col" colspan="2">{{user.username}}</th>
+                           <th scope="col">{{user.twubric.total}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                           <td>{{user.twubric.friends}} Friends</td>
+                           <td>{{user.twubric.influence}} Influence</td>
+                           <td>{{user.twubric.chirpiness}} Chirpiness</td>
+                        </tr>
+                        <tr>
+                           <td>{{user.join_date}}</td>
+                           <td colspan="2" >
+                              <button class="btn btn-sm btn-danger" ng-click="remove(user.uid)">Remove</button>
+                              
+                           </td>
+                        </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+          
+
+            </section>
+      </div>
+
+   <script src="main.js"></script>
+   <!-- <script src="node_modules/angular-material/angular-material.min.js"></script> -->
+   <!-- JavaScript Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   </body>
+</html>
